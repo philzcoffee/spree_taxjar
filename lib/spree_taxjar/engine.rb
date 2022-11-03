@@ -23,8 +23,8 @@ module SpreeTaxjar
       end
     end
 
-    initializer 'spree.register.calculators' do |app|
-      app.config.spree.calculators.tax_rates << Spree::Calculator::TaxjarCalculator
+    config.after_initialize do
+      Rails.application.config.spree.calculators.tax_rates << ::Spree::Calculator::TaxjarCalculator
     end
 
     config.to_prepare &method(:activate).to_proc
